@@ -20,9 +20,9 @@ $(".container").on("click",".description",function(){
 
     timeDiv.removeChild(timeDivChild);
     descriptionInput = document.createElement("textarea");
-    descriptionInput.setAttribute("autofocus","true");
     descriptionInput.innerHTML = innerText;
     timeDiv.appendChild(descriptionInput);
+    descriptionInput.focus();
 })
 
 $(".container").on("blur","textarea",function(){
