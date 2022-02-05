@@ -9,14 +9,31 @@ $(".container").on("click",".description",function(){
     timeDiv = this;
     timeDivChild = this.childNodes[0];
     if (timeDivChild.tagName != "P") {
-        console.log("no p")
         return;
+    }
+
+    innerText = "";
+
+    if (timeDivChild.innerHTML != "") {
+        innerText = timeDivChild.innerHTML;
     }
 
     timeDiv.removeChild(timeDivChild);
     descriptionInput = document.createElement("textarea");
     descriptionInput.setAttribute("autofocus","true");
+    descriptionInput.innerHTML = innerText;
     timeDiv.appendChild(descriptionInput);
+})
+
+$(".container").on("blur","textarea",function(){
+    timeDiv = this.parentElement;
+    descriptionText = this.value.trim();
+
+    timeDiv.removeChild(this);
+    descriptionPara = document.createElement("p");
+    descriptionPara.innerHTML = descriptionText;
+    descriptionPara.className = "text-dark";
+    timeDiv.appendChild(descriptionPara);
 })
 
 getTodaysDate();
