@@ -36,6 +36,16 @@ function checkHour() {
     }
 }
 
+function loadSchedule() {
+    myEvents = JSON.parse(localStorage.getItem("workDaySchedule"));
+    allDescriptions = $(".container").find(".description");
+    for (let i = 0; i<allDescriptions.length; i++) {
+        console.log(allDescriptions[i].childNodes[0].innerText);
+        console.log(myEvents[allDescriptions[i].id.toUpperCase()]);
+        allDescriptions[i].childNodes[0].innerText = myEvents[allDescriptions[i].id.toUpperCase()];
+    }
+}
+
 $(".container").on("click",".description",function(){
     timeDiv = this;
     timeDivChild = this.childNodes[0];
@@ -76,3 +86,4 @@ $(".container").on("click",".saveBtn",function(){
 
 currentDateEl.textContent = dateOnly;
 checkHour();
+loadSchedule();
