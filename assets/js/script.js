@@ -3,6 +3,18 @@ let dateOnly = todaysDate.format("dddd, MMMM Do YYYY");
 let timeOnly = todaysDate.format("HH");
 currentDateEl = document.getElementById("currentDay");
 
+let myEvents = {
+    "9AM" : "",
+    "10AM" : "",
+    "11AM" : "",
+    "12PM" : "",
+    "1PM" : "",
+    "2PM" : "",
+    "3PM" : "",
+    "4PM" : "",
+    "5PM" : ""
+};
+
 setInterval(function() {
     todaysDate = moment();
     dateOnly = todaysDate.format("dddd, MMMM Do YYYY");
@@ -53,6 +65,13 @@ $(".container").on("blur","textarea",function(){
     descriptionPara.innerHTML = descriptionText;
     descriptionPara.className = "text-dark";
     timeDiv.appendChild(descriptionPara);
+})
+
+$(".container").on("click",".saveBtn",function(){
+    parentDiv = this.parentElement;
+    timeString = parentDiv.childNodes[1].innerText;
+    myEvents[timeString] = parentDiv.childNodes[3].innerText;
+    localStorage.setItem("workDaySchedule",JSON.stringify(myEvents));
 })
 
 currentDateEl.textContent = dateOnly;
