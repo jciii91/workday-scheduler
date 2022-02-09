@@ -44,14 +44,15 @@ function checkHour() {
 
 //loads saved schedule on page load
 function loadSchedule() {
+    if (JSON.parse(localStorage.getItem("workDaySchedule")) == null) {
+        return;
+    }
     // parse stored schedule
     myEvents = JSON.parse(localStorage.getItem("workDaySchedule"));
     // find all description divs
     allDescriptions = $(".container").find(".description");
     // iterate over each row and fill in saved events
     for (let i = 0; i<allDescriptions.length; i++) {
-        console.log(allDescriptions[i].childNodes[0].innerText);
-        console.log(myEvents[allDescriptions[i].id.toUpperCase()]);
         allDescriptions[i].childNodes[0].innerText = myEvents[allDescriptions[i].id.toUpperCase()];
     }
 }
